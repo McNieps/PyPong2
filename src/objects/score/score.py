@@ -24,7 +24,7 @@ class Score:
     ASSETS = {}
 
     def __init__(self, max_score=12):
-        self.points: list[list[float]] = [[], []]
+        self.points: list[list[float]] = [[1000 for i in range(50)], []]
         self.max_score = max_score
 
         self.latest_side = 0
@@ -102,7 +102,7 @@ class Score:
 
         anim = False
 
-        strength = 1.5
+        strength = 2
         spawn_time = self.FLAG_MAX_TIME_MIN_MAX * (position / (self.max_score - 1)) ** strength
 
         time_flag = time.time() - self.animation_start_time - spawn_time

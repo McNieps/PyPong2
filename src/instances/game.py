@@ -1,4 +1,5 @@
 import pygame
+import time
 
 from src.engine.app import App
 from src.engine.handlers.loop_handler import LoopHandler
@@ -9,6 +10,7 @@ from src.objects.pad import Pad
 from src.objects.ball import Ball
 from src.objects.particles.particle import Particle
 from src.objects.effects.effect import Effect
+from src.engine.shaders.blur import BlurShader
 
 
 def game():
@@ -60,13 +62,9 @@ def game():
         Ball.draw_all(window)
         Pad.draw_all(window)
         arena.draw(window)
-
         Effect.render_all(window)
-
-        # left_surf = window.subsurface((0, 0, 200, 300))
-        # left_surf.blit(pygame.transform.flip(left_surf, 0, 1), (0, 0))
-        # right_surf = window.subsurface((200, 0, 200, 300))
-        # right_surf.blit(pygame.transform.flip(right_surf, 0, 1), (0, 0))
+        window.blit(pygame.transform.box_blur(window, 1), (0, 0))
+        window.blit(pygame.transform.box_blur(window, 1), (0, 0))
 
         pygame.display.flip()
 

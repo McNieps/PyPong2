@@ -97,10 +97,11 @@ class Pad:
 
         if self.rect.bottom > self.linked_arena.rect.bottom:
             self.rect.bottom = self.linked_arena.rect.bottom
-            self.y = self.rect.centery
+            self.y = self.rect.centery +1
             self.vy = abs(self.vy) * -self.bounce
 
             if abs(self.vy) > self.PARTICLE_THRESHOLD_SPEED:
+                print(self.vy)
                 PadSlamDust.spawn_bunch((self.rect.centerx, self.rect.bottom), self.vy, 20)
                 ScreenShake.create(self.vy/50, 0.2, 0.25)
                 self.create_bounce_sound()
